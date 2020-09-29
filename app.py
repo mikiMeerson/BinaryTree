@@ -1,15 +1,16 @@
+# מיקי מאירסון 207349010
+# נעם תשובה 207576109
+
 from __future__ import annotations
 import random
-
-COUNT = [10]
 
 
 class Point:
     def __init__(self, x=None, y=None):
         # TODO: if the x/y is zero then we will rand number
         # random.randint- Return a random integer N such that a <= N <= b.
-        self.x = x if x is not None else random.randint(1, 100)
-        self.y = y if y is not None else random.randint(1, 100)
+        self.x = x if x is not None else random.randint(0, 100)
+        self.y = y if y is not None else random.randint(0, 100)
 
     def __le__(self, other: int):
         """ This function overrides '<' operator for points
@@ -68,35 +69,10 @@ class Tree:
 def build_tree() -> Tree:
     """ Create 1000 random points and insert them into a binary search tree """
     t = Tree()
-    for i in range(10):
+    for i in range(1000):
         new_node = Node(Point())
         t.insert(new_node)
     return t
-
-
-def print_2d_util(root, space):
-    if root is None:
-        return
-
-    # Increase distance between levels
-    space += COUNT[0]
-
-    # Process right child first
-    print_2d_util(root.right, space)
-
-    # Print current node after space
-    # count
-    print()
-    for i in range(COUNT[0], space):
-        print(end=" ")
-    print(str(root.key.x) + ', ' + str(root.key.y))
-
-    # Process left child
-    print_2d_util(root.left, space)
-
-
-def print_2d(root):
-    print_2d_util(root, 0)
 
 
 def nearest_right_point(root, target):
@@ -131,10 +107,38 @@ def nearest_right_point(root, target):
     return _get_closest_node(right_closest, left_closest)
 
 
+def print_2d(root, space=0):
+    """ This function prints the tree (left-most point is root) """
+    if root is None:
+        return
+
+    # Increase distance between levels
+    space += 10
+
+    # Process right child
+    print_2d(root.right, space)
+    space_str = '\n'
+    for i in range(10, space):
+        space_str += ' '
+    print(space_str + str(root.key))
+
+    # Process left child
+    print_2d(root.left, space)
+
+
 if __name__ == '__main__':
+    x0 = None
+    while x0 is None:
+        try:
+            x0 = int(input("Type a number:"))
+        except ValueError:
+            print("This is not a whole number.")
+
     t = build_tree()
-    print_2d(t.root)
-    x0 = random.randint(0, 100)
-    print(" Searching for {} nearest to the right".format(x0))
+     
+    # print('Printing the tree - left-most node is the root:')
+    # print_2d(t.root)
+
+    print(" Searching for {} nearest number to the right".format(x0))
     point = nearest_right_point(t.root, x0)
     print(point) if point else print(Point(0, 0))
