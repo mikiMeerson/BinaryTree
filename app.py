@@ -107,7 +107,7 @@ def nearest_right_point(root, target):
     return _get_closest_node(right_closest, left_closest)
 
 
-def print_2d(root, space):
+def print_2d(root, space=0):
     """ This function prints the tree (left-most point is root) """
     if root is None:
         return
@@ -136,8 +136,8 @@ if __name__ == '__main__':
 
     t = build_tree()
 
-    # print('Printing the tree - right-most node is the root:')
-    # print_2d(t.root, 0)
+    print('Printing the tree - left-most node is the root:')
+    print_2d(t.root)
 
     print(" Searching for {} nearest number to the right".format(x0))
     point = nearest_right_point(t.root, x0)
