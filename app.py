@@ -135,9 +135,9 @@ if __name__ == '__main__':
             print("This is not a whole number.")
 
     t = build_tree()
-
-    print('Printing the tree - left-most node is the root:')
-    print_2d(t.root)
+     
+    # print('Printing the tree - left-most node is the root:')
+    # print_2d(t.root)
 
     print(" Searching for {} nearest number to the right".format(x0))
     point = nearest_right_point(t.root, x0)
