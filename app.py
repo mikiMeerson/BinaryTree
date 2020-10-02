@@ -7,8 +7,6 @@ import random
 
 class Point:
     def __init__(self, x=None, y=None):
-        # TODO: if the x/y is zero then we will rand number
-        # random.randint- Return a random integer N such that a <= N <= b.
         self.x = x if x is not None else random.randint(0, 100)
         self.y = y if y is not None else random.randint(0, 100)
 
@@ -135,7 +133,7 @@ if __name__ == '__main__':
             print("This is not a whole number.")
 
     t = build_tree()
-     
+
     # print('Printing the tree - left-most node is the root:')
     # print_2d(t.root)
 
